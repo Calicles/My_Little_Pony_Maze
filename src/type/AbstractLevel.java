@@ -1,16 +1,16 @@
 package type;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.StreamTokenizer;
 import java.util.HashMap;
-
 import javax.imageio.ImageIO;
 
+import model.Geometry;
 import model.Map;
 import model.Pony;
 
@@ -18,10 +18,14 @@ public abstract class AbstractLevel {
 
 	private Map map;
 	private Pony player;
+	private Geometry screenSize;
 	
 	public AbstractLevel(String fileMapUrl) throws IOException {
 		initMap(fileMapUrl);
+		setScreenSize();
 	}
+	
+	public Dimension getDimension() {return screenSize.getDimension();}
 	
 	public void drawLevel(Graphics g)
 	{
@@ -29,17 +33,52 @@ public abstract class AbstractLevel {
 		g.drawImage(player.getImage(), player.getX(), player.getY(), null);
 	}
 	
-	public void translateXPlayer(int xVector)
+	public boolean translateXPlayer(int xVector)
 	{
+		boolean check= true;
+		if(isOnLeft(xVector)) {
+			xVector= player.getX();
+			check= false;
+		}else if(isOnRight(xVector)) {
+			xVector= screenSize.getWidth() - (player.getX() + 
+					player.getWidth());
+			check= false;
+		}
 		player.translateX(xVector);
+		return check;
 	}
-	public void translateYPlayer(int yVector)
+	public boolean translateYPlayer(int yVector)
 	{
-		player.translateY(yVector);
+		boolean check= true;
+		if(isOnTop(yVector)) {
+			yVector= player.getY();
+			check= false;
+		}else if(isOnRight(yVector)) {
+			yVector= screenSize.getHeight() - (player.getY() + 
+					player.getHeight());
+			check= false;
+		}
+		player.translateX(yVector);
+		return check;
 	}
-	public int[] getDimension() {
+	public void setScreenSize() {
 		int[] tab= map.getDimension();
-		return tab;
+		screenSize= new Geometry(tab[0], tab[1]);
+	}
+	public boolean isOnLeft(int toTest) {
+		System.out.println(player.getX()+" et "+player.getWidth()+" et "+screenSize.getWidth());
+		return screenSize.isOnLeft(player.getX() + toTest);
+	}
+	public boolean isOnRight(int toTest) {
+		int x= player.getX() + player.getWidth();
+		return screenSize.isOnRight(x + toTest);
+	}
+	public boolean isOnTop(int toTest) {
+		return screenSize.isOnTop(player.getY() + toTest);
+	}
+	public boolean isOnBottom(int toTest) {
+		int y= player.getY() + player.getHeight();
+		return screenSize.isOnBottom(y + toTest);
 	}
 	
 	private void initMap(String fileMapUrl) throws IOException {

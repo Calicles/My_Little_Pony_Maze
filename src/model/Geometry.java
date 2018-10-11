@@ -13,10 +13,10 @@ public class Geometry {
 	}
 	
 	public int getWidth() {return width;}
-	public int height() {return height;}
+	public int getHeight() {return height;}
 	
-	public boolean isOnLeft(int toTest) {return toTest <= 0;}
-	public boolean isOnRight(int toTest) {return toTest >= width;}
+	public boolean isOnLeft(int toTest) {return toTest < 0;}
+	public boolean isOnRight(int toTest) {return toTest > width;}
 	public boolean isOnTop(int toTest) {return toTest < 0;}
 	public boolean isOnBottom(int toTest) {return toTest >= height;}
 	
