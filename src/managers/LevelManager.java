@@ -18,7 +18,7 @@ public class LevelManager {
 	
 	public LevelManager() throws IOException {
 		listeners= new ArrayList<>();
-		level1= new Level("map/level.txt", "images/twilight.png"); //to do remove
+		level1= new Level("map/level.txt"); //to do remove
 		this.setScreen();
 		levelRunning= level1;
 	}
