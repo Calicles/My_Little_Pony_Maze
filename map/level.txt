@@ -1,0 +1,6 @@
+tileSet 1
+0 images/indiana_decors.jpg
+taille 2 2
+0 0
+0 0
+player images/twilight.png 0 0
