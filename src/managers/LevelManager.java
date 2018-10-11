@@ -18,16 +18,9 @@ public class LevelManager {
 	
 	public LevelManager() throws IOException {
 		listeners= new ArrayList<>();
-		level1= initLevel(); //to do remove
+		level1= new Level("map/level.txt", "images/twilight.png"); //to do remove
 		this.setScreen();
 		levelRunning= level1;
-	}
-	
-	private Level initLevel() throws IOException { //To remove
-		String tab[]= {"images/indiana decors.jpg"};
-		int[][] tab2= {{0},{0}};
-		String s= "images/twilight.png";
-		return new Level(tab, tab2, s);
 	}
 
 	public void translateXPlayer(int xVector)
