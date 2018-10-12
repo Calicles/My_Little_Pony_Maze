@@ -19,16 +19,6 @@ public class LevelManager {
 		levelRunning= level1;
 	}
 
-	public void translateXPlayer(int xVector)
-	{
-		if(levelRunning.translateXPlayer(xVector))
-			this.fireUpdate();
-	}
-	public void translateYPlayer(int yVector)
-	{
-		if(levelRunning.translateYPlayer(yVector))
-			this.fireUpdate();
-	}
 	public void playerMovesLeft(int xVector) {
 		if(levelRunning.playerMovesLeft(xVector))
 			this.fireUpdate();
@@ -38,11 +28,11 @@ public class LevelManager {
 			this.fireUpdate();
 	}
 	public void playerMovesUp(int yVector) {
-		if(levelRunning.translateYPlayer(yVector))//to change
+		if(levelRunning.playerMovesUp(yVector))//to change
 			this.fireUpdate();
 	}
 	public void playerMovesDown(int yVector) {
-		if(levelRunning.translateYPlayer(yVector))//to change
+		if(levelRunning.playerMovesDown(yVector))//to change
 			this.fireUpdate();
 	}
 	

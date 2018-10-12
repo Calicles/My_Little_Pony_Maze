@@ -37,24 +37,6 @@ public abstract class AbstractLevel {
 		g.drawImage(player.getImage(), player.getX(), player.getY(), null);
 	}
 	
-	public boolean translateXPlayer(int xVector)
-	{
-		boolean check= true;
-		if(xVector < 0) {
-
-		}else {
-			if((player.getX() + player.getWidth() > 
-				screenSize.getWidth() - tile_width)) {
-				if(isOnRight(xVector)) {
-					xVector= screenSize.getWidth() - (player.getX() + 
-							player.getWidth());
-					check= false;
-				}
-			}
-		}
-		player.translateX(xVector);
-		return check;
-	}
 	public boolean playerMovesLeft(int xVector) {
 		int deltaX= 0;
 		int posX= player.getX();
@@ -65,16 +47,13 @@ public abstract class AbstractLevel {
 				player.translateX(xVector);
 				return true;
 			}
-		}else if((deltaX= checkLeftTiles(xVector)) != xVector && deltaX != 0) {
-			if(xVector > deltaX)
+		}else if((deltaX= checkLeftTiles(xVector)) < -1) {
+			if(xVector < deltaX)
 				xVector= deltaX;
 			player.translateX(xVector);
 			return true;
-		}else if(deltaX == xVector) {
-			player.translateX(xVector);
-			return true;
 		}
-			
+		System.out.println(deltaX);	
 		return false;
 	}
 	public boolean playerMovesRight(int xVector) {
@@ -88,23 +67,71 @@ public abstract class AbstractLevel {
 				player.translateX(xVector);
 				return true;
 			}
-		}else if((deltaX= checkRightTiles(xVector)) != xVector && deltaX != 0) {
+		}else if((deltaX= checkRightTiles(xVector)) > 1) {
 			if(xVector > deltaX)
 				xVector= deltaX;
 			player.translateX(xVector);
 			return true;
-		}else if(deltaX == xVector) {
-			player.translateX(xVector);
-			return true;
 		}
-		
 		return false;
 	}
 	public boolean playerMovesUp(int yVector) {
+		int deltaY= 0;
+		int posY= player.getY();
+		if(posY < tile_height) {
+			if(!isOnTop(yVector)) {
+				if(yVector > posY)
+					yVector= posY;
+				player.translateY(yVector);
+				return true;
+			}
+		}else if((deltaY= checkUpTiles(yVector)) < -1) {
+			if(yVector < deltaY)
+				yVector= deltaY;
+			player.translateY(yVector);
+			return true;
+		}
+		System.out.println(deltaY);
 		return false;
 	}
-	public boolean playerMovesDown(int Yvector) {
+	public boolean playerMovesDown(int yVector) {
+		int deltaY= 0;
+		int posY= player.getY() + player.getHeight();
+		deltaY= screenSize.getHeight() - posY;
+		if(posY > screenSize.getHeight() - tile_height) {
+			if(!isOnBottom(yVector)) {
+				if(yVector > deltaY) 
+					yVector= deltaY;
+				player.translateY(yVector);
+				return true;
+			}
+		}else if((deltaY= checkDownTiles(yVector)) > 1) {
+			if(yVector > deltaY) 
+				yVector= deltaY;
+			player.translateY(yVector);
+			return true;
+		}
 		return false;
+	}
+	
+	private int checkDownTiles(int yVector) {
+		int minRow= 0, minCol= 0, maxCol= 0;
+		int posY= player.getY() + player.getHeight();
+		minRow= posY / tile_height +1;
+		minCol= player.getX() / tile_width;
+		maxCol= (player.getX() + player.getWidth()) / tile_width;
+		return map.isDownTilesTraversable(minRow, minCol, maxCol,
+				posY, yVector);
+	}
+
+	private int checkUpTiles(int yVector) {
+		int minRow= 0, minCol= 0, maxCol= 0;
+		int posY= player.getY();
+		minRow= posY / tile_height - 1;
+		minCol= player.getX() / tile_width;
+		maxCol= (player.getX() + player.getWidth()) / tile_width;
+		return map.isUpTilesTraversable(minRow, minCol, maxCol, 
+				posY, yVector);
 	}
 	private int checkRightTiles(int xVector) {
 		int minRow= 0, maxRow= 0, minCol= 0;
@@ -125,20 +152,6 @@ public abstract class AbstractLevel {
 				player.getX(), xVector);
 	}
 
-	public boolean translateYPlayer(int yVector)
-	{
-		boolean check= true;
-		if(isOnTop(yVector)) {
-			yVector= player.getY();
-			check= false;
-		}else if(isOnBottom(yVector)) {
-			yVector= screenSize.getHeight() - (player.getY() + 
-					player.getHeight());
-			check= false;
-		}
-		player.translateY(yVector);
-		return check;
-	}
 	public void setScreenSize() {
 		int[] tab= map.getDimension();
 		screenSize= new Geometry(tab[0], tab[1]);

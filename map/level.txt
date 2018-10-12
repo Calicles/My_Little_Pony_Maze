@@ -1,8 +1,8 @@
 tileSet 2
-0 images/tvfin0.png
-5 images/tvfin10.png
+0 images/ponyville.png
+5 images/souk2.png
 taille 3 3
-0 0 0
+0 0 5
 0 5 0
-0 0 0
+5 0 0
 player images/twilight.png 0 0

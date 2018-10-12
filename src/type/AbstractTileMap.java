@@ -44,8 +44,8 @@ public abstract class AbstractTileMap {
 			for(int j=0;j<map[0].length;j++)
 			{
 				tile_num= map[i][j];
-				this.map[i][j]= new Tile(tile_num, i * tile_width, 
-						j * tile_height);
+				this.map[i][j]= new Tile(tile_num, j * tile_width, 
+						i * tile_height);
 			}
 		}
 		
@@ -73,11 +73,12 @@ public abstract class AbstractTileMap {
 	 */
 	public int isTilesLeftTraversable(int minRow, int maxRow, 
 			int minCol, int positionX, int xVector) {
-		for(int i= minCol; i<=minCol;i++) {
-			for(int j= minRow; j<= maxRow;j++) {
+		for(int i= minRow; i<=maxRow;i++) {
+			for(int j= minCol; j<= minCol;j++) {
 				if(!map[i][j].isTraversable()) {
-					System.out.println("minRow= "+minRow+" maxRox= "+maxRow+" minCol= "+minCol+" bool=" +map[i][j].isTraversable());
-					return positionX - (map[i][j].getX() + tile_width);
+					System.out.println("minRow= "+minRow+" maxRox= "+maxRow+" minCol= "+minCol+" bool=" 
+				+map[i][j].isTraversable()+" coor= "+map[i][j].getX()+", "+map[i][j].getY());
+					return (map[i][j].getX() + tile_width) - positionX;
 				}
 			}
 		}
@@ -85,14 +86,36 @@ public abstract class AbstractTileMap {
 	}
 	public int isTilesRightTraversable(int minRow, int maxRow, 
 			int minCol, int positionX, int xVector) {
-		for(int i= minCol; i<=minCol;i++) {
-			for(int j= minRow; j<= maxRow;j++) {
+		for(int i= minRow; i<=maxRow;i++) {
+			for(int j= minCol; j<= minCol;j++) {
 				if(!map[i][j].isTraversable()) {
-					return map[i][j].getX() - positionX-2;
+					return map[i][j].getX() - positionX -1;
 				}
 			}
 		}
 		return xVector;
+	}
+	public int isUpTilesTraversable(int minRow, int minCol,
+			int maxCol, int positionY, int yVector) {
+		for(int i= minRow; i<=minRow;i++) {
+			for(int j= minCol; j<= maxCol;j++) {
+				if(!map[i][j].isTraversable()) {
+					return (map[i][j].getY() + tile_height) - positionY;
+				}
+			}
+		}
+		return yVector;
+	}
+	public int isDownTilesTraversable(int minRow, int minCol, int maxCol,
+			int positionY, int yVector) {
+		for(int i= minRow;i<=minRow;i++) {
+			for(int j=0;j<=maxCol;j++) {
+				if(!map[i][j].isTraversable()) {
+					return map[i][j].getY() - positionY -1;
+				}
+			}
+		}
+		return yVector;
 	}
 	
 
