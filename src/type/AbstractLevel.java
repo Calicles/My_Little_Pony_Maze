@@ -52,8 +52,7 @@ public abstract class AbstractLevel {
 				xVector= deltaX;
 			player.translateX(xVector);
 			return true;
-		}
-		System.out.println(deltaX);	
+		}	
 		return false;
 	}
 	public boolean playerMovesRight(int xVector) {
