@@ -29,6 +29,22 @@ public class LevelManager {
 		if(levelRunning.translateYPlayer(yVector))
 			this.fireUpdate();
 	}
+	public void playerMovesLeft(int xVector) {
+		if(levelRunning.playerMovesLeft(xVector))
+			this.fireUpdate();
+	}
+	public void playerMovesRight(int xVector) {
+		if(levelRunning.playerMovesRight(xVector))//to change
+			this.fireUpdate();
+	}
+	public void playerMovesUp(int yVector) {
+		if(levelRunning.translateYPlayer(yVector))//to change
+			this.fireUpdate();
+	}
+	public void playerMovesDown(int yVector) {
+		if(levelRunning.translateYPlayer(yVector))//to change
+			this.fireUpdate();
+	}
 	
 	public void draw(Graphics g)
 	{
@@ -52,12 +68,5 @@ public class LevelManager {
 		for(LevelListener l:listeners)
 			l.update();
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 }

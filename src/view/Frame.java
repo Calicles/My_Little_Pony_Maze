@@ -32,13 +32,13 @@ public class Frame extends JFrame {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if(e.getKeyCode() == KeyEvent.VK_RIGHT)
-				panel.translateXPlayer(4);
+				panel.playerMovesRight(4);
 			else if(e.getKeyCode() == KeyEvent.VK_LEFT)
-				panel.translateXPlayer(-4);	
+				panel.playerMovesLeft(-4);	
 			else if(e.getKeyCode() == KeyEvent.VK_UP)
-				panel.translateYPlayer(-4);
+				panel.playerMovesUp(-4);
 			else if(e.getKeyCode() == KeyEvent.VK_DOWN)
-				panel.translateYPlayer(4);
+				panel.playerMovesDown(4);
 		}
 
 		@Override

@@ -21,6 +21,7 @@ public class Tile {
 	public int getTile_num() {return tile_num;}
 	public int getX() {return x;}
 	public int getY() {return y;}
+	public boolean isTraversable() {return traversable;}
 	
 	
 }

@@ -10,6 +10,7 @@ public abstract class AbstractTileMap {
 	
 	private HashMap<Integer, BufferedImage> tileSet;
 	private Tile[][] map;
+	
 	private int tile_width, tile_height;
 	
 	public AbstractTileMap(HashMap<Integer, BufferedImage> tileSet, int[][] map)
@@ -55,6 +56,43 @@ public abstract class AbstractTileMap {
 		tab[0]= tileSet.get(0).getWidth() * map.length;
 		tab[1]= tileSet.get(0).getHeight() * map[0].length;
 		return tab;
+	}
+	public int getTile_width() {return tile_width;}
+	public int getTile_height() {return tile_height;}
+	
+	/**
+	 * calcule la distance entre la position x du joueur 
+	 * et une tuile solide.
+	 * @param minRow première ligne des tuiles
+	 * @param maxRow dernière ligne
+	 * @param minCol la colonne des tuiles
+	 * @param positionX du joueur
+	 * @xVector vecteur de deplacement
+	 * @return la différence entre les positions, ou vecteur si le mouvement 
+	 * peut se faire
+	 */
+	public int isTilesLeftTraversable(int minRow, int maxRow, 
+			int minCol, int positionX, int xVector) {
+		for(int i= minCol; i<=minCol;i++) {
+			for(int j= minRow; j<= maxRow;j++) {
+				if(!map[i][j].isTraversable()) {
+					System.out.println("minRow= "+minRow+" maxRox= "+maxRow+" minCol= "+minCol+" bool=" +map[i][j].isTraversable());
+					return positionX - (map[i][j].getX() + tile_width);
+				}
+			}
+		}
+		return xVector;
+	}
+	public int isTilesRightTraversable(int minRow, int maxRow, 
+			int minCol, int positionX, int xVector) {
+		for(int i= minCol; i<=minCol;i++) {
+			for(int j= minRow; j<= maxRow;j++) {
+				if(!map[i][j].isTraversable()) {
+					return map[i][j].getX() - positionX-2;
+				}
+			}
+		}
+		return xVector;
 	}
 	
 

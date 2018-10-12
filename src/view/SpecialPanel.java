@@ -31,11 +31,17 @@ public class SpecialPanel extends JPanel implements LevelListener{
 	public void update() {
 		this.repaint();
 	}
-	public void translateXPlayer(int xVector) {
-		model.translateXPlayer(xVector);
+	public void playerMovesLeft(int xVector) {
+		model.playerMovesLeft(xVector);
 	}
-	public void translateYPlayer(int yVector) {
-		model.translateYPlayer(yVector);
+	public void playerMovesUp(int yVector) {
+		model.playerMovesUp(yVector);
+	}
+	public void playerMovesRight(int xVector) {
+		model.playerMovesRight(xVector);
+	}
+	public void playerMovesDown(int yVector) {
+		model.playerMovesDown(yVector);
 	}
 
 }
