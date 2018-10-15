@@ -1,8 +1,11 @@
-tileSet 2
+tileSet 3
 0 images/ponyville.png
 5 images/souk2.png
-taille 3 3
-0 0 5
-0 5 0
-5 0 0
+1 images/espace.png
+taille 5 5
+5 0 1 5 5
+0 0 0 0 5
+5 0 5 5 5
+5 0 0 5 5
+5 5 5 5 5  
 player images/twilight.png 0 0

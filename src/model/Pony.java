@@ -34,4 +34,7 @@ public class Pony extends AbstractImage {
 	{
 		this.setY(y + yVector);
 	}
+	public Rectangle toRectangle() {
+		return new Rectangle(x, x + width, y, y + height);
+	}
 }

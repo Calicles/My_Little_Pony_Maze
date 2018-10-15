@@ -8,9 +8,9 @@ import javax.imageio.ImageIO;
 
 public abstract class AbstractImage {
 
-	private BufferedImage image;
-	private int width;
-	private int height;
+	protected BufferedImage image;
+	protected int width;
+	protected int height;
 	
 	public AbstractImage(String imageUrl) throws IOException {
 		File file= new File(imageUrl);

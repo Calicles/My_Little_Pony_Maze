@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Level;
+import type.WinException;
 
 public class LevelManager {
 
@@ -28,8 +29,12 @@ public class LevelManager {
 			this.fireUpdate();
 	}
 	public void playerMovesUp(int yVector) {
+		try {
 		if(levelRunning.playerMovesUp(yVector))//to change
 			this.fireUpdate();
+		}catch(WinException we) {
+			this.fireWin();
+		}
 	}
 	public void playerMovesDown(int yVector) {
 		if(levelRunning.playerMovesDown(yVector))//to change
@@ -57,6 +62,10 @@ public class LevelManager {
 	private void fireUpdate() {
 		for(LevelListener l:listeners)
 			l.update();
+	}
+	private void fireWin() {
+		for(LevelListener l:listeners)
+			l.win();
 	}
 	
 }
