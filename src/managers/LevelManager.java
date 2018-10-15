@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Level;
+import type.LevelListener;
 import type.WinException;
 
 public class LevelManager {

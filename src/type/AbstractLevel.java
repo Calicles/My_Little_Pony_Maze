@@ -34,6 +34,11 @@ public abstract class AbstractLevel {
 	}
 	
 	public Dimension getDimension() {return screenSize.getDimension();}
+
+	public void setScreenSize() {
+		int[] tab= map.getDimension();
+		screenSize= new Rectangle(tab[0], tab[1]);
+	}
 	
 	public void drawLevel(Graphics g)
 	{
@@ -190,10 +195,6 @@ public abstract class AbstractLevel {
 		return (solidTile.getX() + tile_width) - player.getX();
 	}
 
-	public void setScreenSize() {
-		int[] tab= map.getDimension();
-		screenSize= new Rectangle(tab[0], tab[1]);
-	}
 	public boolean isOnLeft(int toTest) {
 		return screenSize.isOnLeft(player.getX() + toTest);
 	}

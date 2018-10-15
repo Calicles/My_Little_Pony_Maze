@@ -5,8 +5,8 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import managers.LevelListener;
 import managers.LevelManager;
+import type.LevelListener;
 
 public class SpecialPanel extends JPanel implements LevelListener{
 	
