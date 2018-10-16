@@ -12,15 +12,15 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import model.Map;
-import model.Pony;
+import model.Player;
 import model.Rectangle;
 import model.Tile;
 
 public abstract class AbstractLevel {
 
 	protected Map map;
-	protected Pony player;
-	protected Rectangle screenSize;
+	protected Player player;
+	protected Rectangle mapSize;
 	
 	protected boolean running;
 	protected int tile_width, tile_height;
@@ -32,12 +32,19 @@ public abstract class AbstractLevel {
 		tile_height= map.getTile_height();
 		running= true;
 	}
+	public AbstractLevel(String fileMapUrl, Rectangle mapSize) throws IOException {
+		initMap(fileMapUrl);
+		this.mapSize= mapSize;
+		tile_width= map.getTile_width();
+		tile_height= map.getTile_height();
+		running= true;
+	}
 	
-	public Dimension getDimension() {return screenSize.getDimension();}
+	public Dimension getDimension() {return mapSize.getDimension();}
 
 	public void setScreenSize() {
 		int[] tab= map.getDimension();
-		screenSize= new Rectangle(tab[0], tab[1]);
+		mapSize= new Rectangle(tab[0], tab[1]);
 	}
 	
 	public void drawLevel(Graphics g)
@@ -78,9 +85,9 @@ public abstract class AbstractLevel {
 			running= false;
 		int deltaX= 0;
 		int posX= player.getX() + player.getWidth();
-		if(posX >= screenSize.getWidth() - tile_width) {
+		if(posX >= mapSize.getWidth() - tile_width) {
 			if(!isOnRight(xVector)) {
-				deltaX= screenSize.getWidth() - posX;
+				deltaX= mapSize.getWidth() - posX;
 				if(xVector > deltaX)
 					xVector= deltaX;
 				player.translateX(xVector);
@@ -119,9 +126,9 @@ public abstract class AbstractLevel {
 			running= false;
 		int deltaY= 0;
 		int posY= player.getY() + player.getHeight();
-		if(posY > screenSize.getHeight() - tile_height) {
+		if(posY > mapSize.getHeight() - tile_height) {
 			if(!isOnBottom(yVector)) {
-				deltaY= screenSize.getHeight() - posY;
+				deltaY= mapSize.getHeight() - posY;
 				if(yVector > deltaY) 
 					yVector= deltaY;
 				player.translateY(yVector);
@@ -196,18 +203,18 @@ public abstract class AbstractLevel {
 	}
 
 	public boolean isOnLeft(int toTest) {
-		return screenSize.isOnLeft(player.getX() + toTest);
+		return mapSize.isOnLeft(player.getX() + toTest);
 	}
 	public boolean isOnRight(int toTest) {
 		int x= player.getX() + player.getWidth();
-		return screenSize.isOnRight(x + toTest);
+		return mapSize.isOnRight(x + toTest);
 	}
 	public boolean isOnTop(int toTest) {
-		return screenSize.isOnTop(player.getY() + toTest);
+		return mapSize.isOnTop(player.getY() + toTest);
 	}
 	public boolean isOnBottom(int toTest) {
 		int y= player.getY() + player.getHeight();
-		return screenSize.isOnBottom(y + toTest);
+		return mapSize.isOnBottom(y + toTest);
 	}
 	public boolean isPlayerInBox(Tile tile) {
 		Rectangle box= new Rectangle(tile.getX(), tile.getX() +
@@ -238,7 +245,7 @@ public abstract class AbstractLevel {
 			playerY= Integer.parseInt(playerFile[3]);
 		}
 		this.map= new Map(tileSet, map);
-		this.player= new Pony(playerFile[1], playerX, playerY);
+		this.player= new Player(playerFile[1], playerX, playerY);
 	}
 
 	private int[][] lireMap(BufferedReader reader) {
