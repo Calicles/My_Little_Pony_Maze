@@ -36,6 +36,18 @@ public class LevelManager {
 		if(levelRunning.playerMovesDown(yVector))//to change
 			this.fireUpdate();
 	}
+	public void playerStopLeft() {
+		levelRunning.playerStopLeft();
+	}
+	public void playerStopRight() {
+		levelRunning.playerStopRight();
+	}
+	public void playerStopUp() {
+		levelRunning.playerStopUp();
+	}
+	public void playerStopDown() {
+		levelRunning.playerStopDown();
+	}
 	
 	public void draw(Graphics g)
 	{

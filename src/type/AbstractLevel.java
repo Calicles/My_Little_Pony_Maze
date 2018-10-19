@@ -64,6 +64,19 @@ public abstract class AbstractLevel {
 		}
 	}
 	
+	public void playerStopLeft() {
+		player.stopLeft();
+	}
+	public void playerStopRight() {
+		player.stopRight();
+	}
+	public void playerStopUp() {
+		player.stopUp();
+	}
+	public void playerStopDown() {
+		player.stopDown();
+	}
+	
 	public boolean playerMovesLeft(int xVector) {
 		if(isPlayerOnExit())
 			running= false;

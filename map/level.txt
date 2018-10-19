@@ -21,7 +21,7 @@ taille 10 10
 6 7 0 0 0 0 0 0 0 6
 6 7 0 0 0 0 0 0 0 6
 8 10 10 10 10 10 10 10 10 10
-player 50 0
+player 60 60
 4 3
 images/pony/apple/face1.png
 images/pony/apple/face2.png

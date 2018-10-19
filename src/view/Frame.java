@@ -42,9 +42,15 @@ public class Frame extends JFrame {
 		}
 
 		@Override
-		public void keyReleased(KeyEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void keyReleased(KeyEvent e) {
+			if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+				panel.playerStopRight();
+			else if(e.getKeyCode() == KeyEvent.VK_LEFT)
+				panel.playerStopLeft();	
+			else if(e.getKeyCode() == KeyEvent.VK_UP)
+				panel.playerStopUp();
+			else if(e.getKeyCode() == KeyEvent.VK_DOWN)
+				panel.playerStopDown();
 		}
 
 		@Override

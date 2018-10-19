@@ -44,5 +44,17 @@ public class SpecialPanel extends JPanel implements LevelListener{
 	public void playerMovesDown(int yVector) {
 		model.playerMovesDown(yVector);
 	}
+	public void playerStopLeft() {
+		model.playerStopLeft();
+	}
+	public void playerStopRight() {
+		model.playerStopRight();
+	}
+	public void playerStopUp() {
+		model.playerStopUp();
+	}
+	public void playerStopDown() {
+		model.playerStopDown();
+	}
 
 }
