@@ -2,7 +2,7 @@ package model;
 
 public class Tile {
 	
-	public static final int SOLID= 5;
+	public static final int SOLID= 6;
 	public static final int EXIT= 1;
 
 	private int tile_num;

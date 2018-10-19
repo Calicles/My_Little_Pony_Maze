@@ -1,15 +1,24 @@
-tileSet 7
+tileSet 11
 0 images/tiles/herbe.png
-1 image/tiles/tapis.png
-5 images/tiles/barriere1.png
-6 images/tiles/barriere2.png
-7 images/tiles/barriere3.png
-8 images/tiles/barriere4.png
-9 images/tiles/barriere5.png
-taille 5 5
-5 0 1 5 5
-0 0 0 0 5
-5 0 5 5 5
-5 0 0 5 5
-5 5 5 5 5  
-player images/twilight.png 0 0
+1 images/tiles/tapis.png
+2 images/tiles/place1.png
+3 images/tiles/place2.png
+4 images/tiles/place3.png
+5 images/tiles/place4.png
+6 images/tiles/barriere1.png
+7 images/tiles/barriere2.png
+8 images/tiles/barriere3.png
+9 images/tiles/barriere4.png
+10 images/tiles/barriere5.png
+taille 10 10
+6 10 10 10 10 10 10 10 10 1
+6 7 0 0 0 0 0 0 0 6
+6 7 0 0 0 0 0 0 0 6
+6 7 0 0 0 0 0 0 0 6
+6 7 0 0 2 3 0 0 0 6
+6 7 0 0 4 5 0 0 0 6
+6 7 0 0 0 0 0 0 0 6
+6 7 0 0 0 0 0 0 0 6
+6 7 0 0 0 0 0 0 0 6
+8 10 10 10 10 10 10 10 10 10
+player images/twilight.png 50 0
