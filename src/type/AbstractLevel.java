@@ -238,7 +238,8 @@ public abstract class AbstractLevel {
 		HashMap<Integer, BufferedImage> tileSet= null;
 		int[][] map= null;
 		int playerX= 0, playerY= 0;
-		String playerFile[]= null;
+		String playerFile[][]= null;
+		String[] playerCoor= null;
 		
 		try(FileReader r= new FileReader(fileMapUrl)){
 			BufferedReader reader= new BufferedReader(r);
@@ -247,14 +248,30 @@ public abstract class AbstractLevel {
 				fileFormatError("le mot tileSet");
 			tileSet= lireSet(Integer.parseInt(nbrTile[1]), reader);
 			map= lireMap(reader);
-			playerFile= reader.readLine().split(" ");
-			playerX= Integer.parseInt(playerFile[2]);
-			playerY= Integer.parseInt(playerFile[3]);
+			playerCoor= reader.readLine().split(" ");
+			if(playerCoor[0].equals("player")) {
+				playerX= lireInt(playerCoor[1]); 
+				playerY= lireInt(playerCoor[2]);
+			}
+			playerFile= readPlayer(reader);
 		}
 		this.map= new Map(tileSet, map);
-		this.player= new Player(playerFile[1], playerX, playerY);
+		this.player= new Player(playerFile[0][1], playerFile,
+				playerX, playerY);
 	}
 
+	private String[][] readPlayer(BufferedReader reader) throws IOException {
+		String[][] images;
+		String[] iMax_jMax= reader.readLine().split(" ");
+		int iMax= lireInt(iMax_jMax[0]), jMax= lireInt(iMax_jMax[1]);
+		images= new String[iMax][jMax];
+		for(int i= 0; i<iMax;i++) {
+			for(int j=0;j<jMax;j++) {
+				images[i][j]= reader.readLine();
+			}
+		}
+		return images;
+	}
 	private int[][] lireMap(BufferedReader reader) {
 		int iMax=0, jMax= 0;
 		int[][] map= null;
