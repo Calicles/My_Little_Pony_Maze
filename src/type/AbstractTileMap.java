@@ -20,7 +20,6 @@ public abstract class AbstractTileMap {
 		this.tile_width= tileSet.get(0).getWidth();
 		this.tile_height= tileSet.get(0).getHeight();
 		initMap(map);
-		afficherMap();
 	}
 	
 	public int getTile_width() {return tile_width;}
@@ -31,15 +30,6 @@ public abstract class AbstractTileMap {
 		tab[0]= tileSet.get(0).getWidth() * map.length;
 		tab[1]= tileSet.get(0).getHeight() * map[0].length;
 		return tab;
-	}
-	
-	public void afficherMap() {//to remove
-		for(int i=0;i<map.length;i++) {
-			for(int j=0;j<map[0].length;j++) {
-				System.out.print("++"+map[i][j].isTraversable()+"++");
-			}
-			System.out.println("");
-		}
 	}
 
 	public void drawMap(Graphics g)

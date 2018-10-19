@@ -21,13 +21,15 @@ public abstract class AbstractLevel {
 	protected Map map;
 	protected Player player;
 	protected Rectangle mapSize;
+	protected Tile exit;
 	
-	protected boolean running;
+	protected boolean running, selected;
 	protected int tile_width, tile_height;
 	
 	public AbstractLevel(String fileMapUrl) throws IOException {
 		initMap(fileMapUrl);
 		setScreenSize();
+		exit= map.findExit();
 		tile_width= map.getTile_width();
 		tile_height= map.getTile_height();
 		running= true;
@@ -41,6 +43,8 @@ public abstract class AbstractLevel {
 	}
 	
 	public Dimension getDimension() {return mapSize.getDimension();}
+	public boolean isSelected() {return selected;}
+	public boolean isRunning() {return running;}
 
 	public void setScreenSize() {
 		int[] tab= map.getDimension();
@@ -148,6 +152,7 @@ public abstract class AbstractLevel {
 		Tile solidTile= null;
 		int minRow= 0, minCol= 0, maxCol= 0;
 		int posY= player.getY() + player.getHeight();
+		
 		minRow= posY / tile_height +1;
 		minCol= player.getX() / tile_width;
 		maxCol= (player.getX() + player.getWidth()) / tile_width;
@@ -163,6 +168,7 @@ public abstract class AbstractLevel {
 		Rectangle tiles= null;
 		int minRow= 0, minCol= 0, maxCol= 0;
 		int posY= player.getY();
+		
 		minRow= posY / tile_height - 1;
 		minCol= player.getX() / tile_width;
 		maxCol= (player.getX() + player.getWidth()) / tile_width;
@@ -178,6 +184,7 @@ public abstract class AbstractLevel {
 		Rectangle tiles= null;
 		int minRow= 0, maxRow= 0, minCol= 0;
 		int posX= player.getX() + player.getWidth();
+		
 		minRow= player.getY() / tile_height;
 		maxRow= (player.getY() + player.getHeight()) / tile_height;
 		minCol= (player.getX() + player.getWidth()) / tile_width + 1;
@@ -192,6 +199,7 @@ public abstract class AbstractLevel {
 		Tile solidTile= null;
 		Rectangle tiles= null;
 		int minRow= 0, maxRow= 0, minCol= 0;
+		
 		minRow= player.getY() / tile_height;
 		maxRow= (player.getY() + player.getHeight()) / tile_height;
 		minCol= player.getX() / tile_width - 1;
@@ -218,12 +226,11 @@ public abstract class AbstractLevel {
 	}
 	public boolean isPlayerInBox(Tile tile) {
 		Rectangle box= new Rectangle(tile.getX(), tile.getX() +
-				tile_width,tile.getY(), tile.getY() + tile_height);
+				tile_width, tile.getY(), tile.getY() + tile_height);
 		Rectangle entity= player.toRectangle();
 		return Rectangle.isInBox(box, entity);
 	}
 	public boolean isPlayerOnExit() {
-		Tile exit= map.findExit();
 		return isPlayerInBox(exit);
 	}
 	

@@ -1,7 +1,11 @@
-tileSet 3
-0 images/ponyville.png
-5 images/souk2.png
-1 images/espace.png
+tileSet 7
+0 images/tiles/herbe.png
+1 image/tiles/tapis.png
+5 images/tiles/barriere1.png
+6 images/tiles/barriere2.png
+7 images/tiles/barriere3.png
+8 images/tiles/barriere4.png
+9 images/tiles/barriere5.png
 taille 5 5
 5 0 1 5 5
 0 0 0 0 5
