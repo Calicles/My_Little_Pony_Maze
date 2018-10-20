@@ -21,7 +21,7 @@ public abstract class AbstractLevel {
 	protected Map map;
 	protected Player player;
 	protected Rectangle mapSize;
-	protected Tile exit;
+	protected Rectangle exit;
 	
 	protected boolean running, selected;
 	protected int tile_width, tile_height;
@@ -29,9 +29,10 @@ public abstract class AbstractLevel {
 	public AbstractLevel(String fileMapUrl) throws IOException {
 		initMap(fileMapUrl);
 		setScreenSize();
-		exit= map.findExit();
 		tile_width= map.getTile_width();
 		tile_height= map.getTile_height();
+		exit= tileToRectangle(map.findExit());
+		System.out.println(exit.getBeginX() +" end: "+ exit.getWidth() +" "+exit.getBeginY()+ " :" +exit.getHeight());
 		running= true;
 	}
 	public AbstractLevel(String fileMapUrl, Rectangle mapSize) throws IOException {
@@ -237,11 +238,9 @@ public abstract class AbstractLevel {
 		int y= player.getY() + player.getHeight();
 		return mapSize.isOnBottom(y + toTest);
 	}
-	public boolean isPlayerInBox(Tile tile) {
-		Rectangle box= new Rectangle(tile.getX(), tile.getX() +
-				tile_width, tile.getY(), tile.getY() + tile_height);
+	public boolean isPlayerInBox(Rectangle rec) {
 		Rectangle entity= player.toRectangle();
-		return Rectangle.isInBox(box, entity);
+		return Rectangle.isInBox(rec, entity);
 	}
 	public boolean isPlayerOnExit() {
 		return isPlayerInBox(exit);
@@ -322,6 +321,11 @@ public abstract class AbstractLevel {
 			}catch(NumberFormatException nfe) {fileFormatError("un int");}
 		}
 		return tileSet;
+	}
+	private Rectangle tileToRectangle(Tile tile) {
+		int endX= tile.getX() + tile_width * 2;
+		int endY= tile.getY() + tile_height * 2;
+		return new Rectangle(tile.getX(), endX, tile.getY(), endY);
 	}
 	private int lireInt(String n) {
 		int nbr= 0;

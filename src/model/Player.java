@@ -11,7 +11,7 @@ import type.AbstractEntity;
 public class Player extends AbstractEntity {
 	
 	private BufferedImage[] face, left, right, back;
-	int index;
+	int index, tempo;
 
 
 	public Player(String imageUrl, String[][] sprites, int xStart, int yStart) throws IOException {
@@ -20,7 +20,7 @@ public class Player extends AbstractEntity {
 		left= toBufferedImages(sprites[1]);
 		right= toBufferedImages(sprites[2]);
 		back= toBufferedImages(sprites[3]);
-		index= 1;
+		index= 1; tempo=0;
 	}
 	
 	private void setX(int x)
@@ -35,14 +35,16 @@ public class Player extends AbstractEntity {
 	{
 		if(xVector < 0) {
 			image= left[index];
-			index++;
-			if(index == left.length)
-				index= 0;
 		}else {
 			image= right[index];
+		}
+		tempo++;
+		if(tempo %4 == 0){
 			index++;
-			if(index == right.length)
-				index= 0;
+			if(tempo == 100)
+				tempo= 0;
+			if(index >= left.length)
+				resetIndex();
 		}
 		this.setX(x + xVector);
 	}
@@ -50,14 +52,16 @@ public class Player extends AbstractEntity {
 	{
 		if(yVector < 0) {
 			image= back[index];
-			index++;
-			if(index == back.length)
-				index= 0;
 		}else {
 			image= face[index];
+		}
+		tempo++;
+		if(tempo %4 == 0){
 			index++;
-			if(index == face.length)
-				index= 0;
+			if(tempo == 100)
+				tempo= 0;
+			if(index >= left.length)
+				resetIndex();
 		}
 		this.setY(y + yVector);
 	}

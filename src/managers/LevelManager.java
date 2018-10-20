@@ -38,15 +38,19 @@ public class LevelManager {
 	}
 	public void playerStopLeft() {
 		levelRunning.playerStopLeft();
+		this.fireUpdate();
 	}
 	public void playerStopRight() {
 		levelRunning.playerStopRight();
+		this.fireUpdate();
 	}
 	public void playerStopUp() {
 		levelRunning.playerStopUp();
+		this.fireUpdate();
 	}
 	public void playerStopDown() {
 		levelRunning.playerStopDown();
+		this.fireUpdate();
 	}
 	
 	public void draw(Graphics g)

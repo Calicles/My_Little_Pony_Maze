@@ -1,27 +1,30 @@
-tileSet 11
-0 images/tiles/herbe.png
-1 images/tiles/tapis.png
-2 images/tiles/place1.png
-3 images/tiles/place2.png
-4 images/tiles/place3.png
-5 images/tiles/place4.png
-6 images/tiles/barriere1.png
-7 images/tiles/barriere2.png
-8 images/tiles/barriere3.png
-9 images/tiles/barriere4.png
-10 images/tiles/barriere5.png
+tileSet 14
+0 images/levelApple/herbe.png
+1 images/levelApple/tapis.png
+2 images/levelApple/place1.png
+3 images/levelApple/place2.png
+4 images/levelApple/place3.png
+5 images/levelApple/place4.png
+6 images/levelApple/wall1.png
+7 images/levelApple/wall2.png
+8 images/levelApple/wall3.png
+9 images/levelApple/wall4.png
+10 images/levelApple/wall5.png
+11 images/levelApple/wall6.png
+12 images/levelApple/wall7.png
+13 images/levelApple/wall8.png
 taille 10 10
-6 10 10 10 10 10 10 10 10 1
-6 7 0 0 0 0 0 0 0 6
-6 7 0 0 0 0 0 0 0 6
-6 7 0 0 0 0 0 0 0 6
-6 7 0 0 2 3 0 0 0 6
-6 7 0 0 4 5 0 0 0 6
-6 7 0 0 0 0 0 0 0 6
-6 7 0 0 0 0 0 0 0 6
-6 7 0 0 0 0 0 0 0 6
-8 10 10 10 10 10 10 10 10 10
-player 60 60
+08 09 10 11 10 11 10 11 10 06
+06 07 12 13 12 13 12 13 12 06
+06 07 00 00 00 00 00 00 00 06
+06 07 00 00 00 00 00 00 00 06
+08 09 00 00 02 03 00 00 00 06
+06 07 00 00 04 05 01 00 00 06
+06 07 00 00 00 00 00 00 00 06
+08 09 08 09 08 09 08 09 08 08
+10 11 10 11 10 11 10 11 10 11
+12 13 12 13 12 13 12 13 12 13
+player 80 80
 4 3
 images/pony/apple/face1.png
 images/pony/apple/face2.png
