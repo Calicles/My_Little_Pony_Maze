@@ -23,7 +23,7 @@ public abstract class AbstractLevel {
 	protected Rectangle mapSize;
 	protected Rectangle exit;
 	
-	protected boolean running, selected;
+	protected boolean running;
 	protected int tile_width, tile_height;
 	
 	public AbstractLevel(String fileMapUrl) throws IOException {
@@ -44,7 +44,6 @@ public abstract class AbstractLevel {
 	}
 	
 	public Dimension getDimension() {return mapSize.getDimension();}
-	public boolean isSelected() {return selected;}
 	public boolean isRunning() {return running;}
 
 	public void setScreenSize() {

@@ -20,7 +20,7 @@ public class Player extends AbstractEntity {
 		left= toBufferedImages(sprites[1]);
 		right= toBufferedImages(sprites[2]);
 		back= toBufferedImages(sprites[3]);
-		index= 1; tempo=0;
+		index= 0; tempo=0;
 	}
 	
 	private void setX(int x)

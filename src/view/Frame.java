@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
@@ -13,20 +14,20 @@ public class Frame extends JFrame {
 	private SpecialPanel panel;
 	
 	public Frame() throws IOException {
-		panel= new SpecialPanel(new LevelManager());
-		this.add(panel);
-		this.addKeyListener(new ImageListener());
+		LevelManager model= new LevelManager();
+		ButtonPanel buttons= new ButtonPanel(model);
+		panel= new SpecialPanel(model);
+		this.setLayout(new BorderLayout());
+		this.add(panel, BorderLayout.CENTER);
+		this.add(buttons, BorderLayout.SOUTH);
+		this.addKeyListener(new InternImageListener());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
 		this.setResizable(false);
 		this.setVisible(true);
 	}
 	
-	
-	
-	
-	
-	public class ImageListener implements KeyListener
+	private class InternImageListener implements KeyListener
 	{
 
 		@Override
@@ -60,4 +61,5 @@ public class Frame extends JFrame {
 		}
 		
 	}
+	
 }

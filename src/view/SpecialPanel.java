@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
@@ -17,6 +19,7 @@ public class SpecialPanel extends JPanel implements LevelListener{
 		this.model.AddListener(this);
 	}
 	
+	
 	@Override
 	public Dimension getPreferredSize() {
 		return model.getDimension();
@@ -31,24 +34,24 @@ public class SpecialPanel extends JPanel implements LevelListener{
 	public void update() {
 		this.repaint();
 	}
-
-	public void playerMovesLeft(int xVector) {
-		model.playerMovesLeft(xVector);
-	}
-	public void playerMovesUp(int yVector) {
-		model.playerMovesUp(yVector);
-	}
+	
 	public void playerMovesRight(int xVector) {
 		model.playerMovesRight(xVector);
 	}
-	public void playerMovesDown(int yVector) {
-		model.playerMovesDown(yVector);
+	public void playerMovesLeft(int xVector) {
+		model.playerMovesLeft(xVector);
 	}
-	public void playerStopLeft() {
-		model.playerStopLeft();
+	public void playerMovesUp(int xVector) {
+		model.playerMovesUp(xVector);
+	}
+	public void playerMovesDown(int xVector) {
+		model.playerMovesDown(xVector);
 	}
 	public void playerStopRight() {
 		model.playerStopRight();
+	}
+	public void playerStopLeft() {
+		model.playerStopLeft();
 	}
 	public void playerStopUp() {
 		model.playerStopUp();
@@ -56,5 +59,5 @@ public class SpecialPanel extends JPanel implements LevelListener{
 	public void playerStopDown() {
 		model.playerStopDown();
 	}
-
+	
 }

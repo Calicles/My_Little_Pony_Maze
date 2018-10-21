@@ -10,14 +10,49 @@ import type.LevelListener;
 
 public class LevelManager {
 
-	private Level level1;
+	private Level levelApple;
+	private Level levelRarity;
+	private Level levelRainbow;
 	private Level levelRunning;
 	private ArrayList<LevelListener> listeners;
 	
 	public LevelManager() throws IOException {
 		listeners= new ArrayList<>();
-		level1= new Level("map/level.txt"); //to do remove
-		levelRunning= level1;
+		levelApple= new Level("map/level.txt");
+		levelRarity= new Level("map/levelRarity.txt");
+		levelRainbow= new Level("map/level.txt");
+		levelRunning= levelApple;
+	}
+	
+	public void switchLeveApple() {
+		levelRunning= levelApple;
+		levelApple.selected();
+		levelRarity.deselected();
+		levelRainbow.deselected();
+		this.fireUpdate();
+	}
+	public void switchLevelRarity() {
+		levelRunning= levelRarity;
+		levelRarity.selected();
+		levelApple.deselected();
+		levelRainbow.deselected();
+		this.fireUpdate();
+	}
+	public void switchLevelRainbow() {
+		levelRunning= levelRainbow;
+		levelRainbow.selected();
+		levelApple.deselected();
+		levelRarity.deselected();
+		this.fireUpdate();
+	}
+	public boolean isAppleSelectedAndRunning() {
+		return !levelApple.isSelected() && levelApple.isRunning();
+	}
+	public boolean isRaritySelectedAndRunning() {
+		return !levelRarity.isSelected() && levelRarity.isRunning();
+	}
+	public boolean isRainbowSelectedAndRunning() {
+		return !levelRainbow.isSelected() && levelRainbow.isRunning();
 	}
 
 	public void playerMovesLeft(int xVector) {
