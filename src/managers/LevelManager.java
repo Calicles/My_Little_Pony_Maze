@@ -18,10 +18,12 @@ public class LevelManager {
 	
 	public LevelManager() throws IOException {
 		listeners= new ArrayList<>();
-		levelApple= new Level("map/level.txt");
-		levelRarity= new Level("map/levelRarity.txt");
-		levelRainbow= new Level("map/level.txt");
+		levelApple= new Level("map/level.txt", "images/fin/apple.png");
+		levelRarity= new Level("map/levelRarity.txt", "images/fin/apple.png");
+		levelRainbow= new Level("map/level.txt", "images/fin/apple.png");
 		levelRunning= levelApple;
+		levelApple.selected();
+		this.fireUpdate();
 	}
 	
 	public void switchLeveApple() {
@@ -88,7 +90,7 @@ public class LevelManager {
 		this.fireUpdate();
 	}
 	
-	public void draw(Graphics g)
+	public void draw(Graphics g) throws IOException
 	{
 		levelRunning.drawLevel(g);
 	}

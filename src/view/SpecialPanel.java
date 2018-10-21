@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 import javax.swing.JPanel;
 
@@ -28,7 +29,12 @@ public class SpecialPanel extends JPanel implements LevelListener{
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		model.draw(g);
+		try {
+			model.draw(g);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void update() {

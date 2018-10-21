@@ -51,17 +51,10 @@ public abstract class AbstractLevel {
 		mapSize= new Rectangle(tab[0], tab[1]);
 	}
 	
-	public void drawLevel(Graphics g)
+	public void drawLevel(Graphics g) throws IOException
 	{
-		if(running) {
-			map.drawMap(g);
-			g.drawImage(player.getImage(), player.getX(), player.getY(), null);
-		}else {
-			Color color= g.getColor();
-			g.setColor(Color.BLACK);
-			g.drawString("SUCCESS", 50, 50);
-			g.setColor(color);
-		}
+		map.drawMap(g);
+		g.drawImage(player.getImage(), player.getX(), player.getY(), null);
 	}
 	
 	public void playerStopLeft() {
@@ -78,8 +71,10 @@ public abstract class AbstractLevel {
 	}
 	
 	public boolean playerMovesLeft(int xVector) {
-		if(isPlayerOnExit())
+		if(isPlayerOnExit()) {
 			running= false;
+			System.out.println("false");
+		}
 		int deltaX= 0;
 		int posX= player.getX();
 		if(posX < tile_width) {
@@ -98,8 +93,10 @@ public abstract class AbstractLevel {
 		return false;
 	}
 	public boolean playerMovesRight(int xVector) {
-		if(isPlayerOnExit())
+		if(isPlayerOnExit()) {
 			running= false;
+			System.out.println("false");
+		}
 		int deltaX= 0;
 		int posX= player.getX() + player.getWidth();
 		if(posX >= mapSize.getWidth() - tile_width) {
@@ -119,8 +116,10 @@ public abstract class AbstractLevel {
 		return false;
 	}
 	public boolean playerMovesUp(int yVector) {
-		if(isPlayerOnExit())
+		if(isPlayerOnExit()) {
 			running= false;
+			System.out.println("false");
+		}
 		int deltaY= 0;
 		int posY= player.getY();
 		if(posY < tile_height) {
@@ -139,8 +138,10 @@ public abstract class AbstractLevel {
 		return false;
 	}
 	public boolean playerMovesDown(int yVector) {
-		if(isPlayerOnExit())
+		if(isPlayerOnExit()) {
 			running= false;
+			System.out.println("false");
+		}
 		int deltaY= 0;
 		int posY= player.getY() + player.getHeight();
 		if(posY > mapSize.getHeight() - tile_height) {
