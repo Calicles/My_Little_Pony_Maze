@@ -23,7 +23,6 @@ public class LevelManager {
 		levelRainbow= new Level("map/level.txt", "images/fin/apple.png");
 		levelRunning= levelApple;
 		levelApple.selected();
-		this.fireUpdate();
 	}
 	
 	public void switchLeveApple() {
