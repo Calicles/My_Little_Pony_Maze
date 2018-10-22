@@ -24,11 +24,13 @@ public abstract class AbstractTileMap {
 	
 	public int getTile_width() {return tile_width;}
 	public int getTile_height() {return tile_height;}
+	public Tile[][] getMap(){return map;}
+	public HashMap<Integer, BufferedImage> getTileSet() {return tileSet;}
 	
 	public int[] getDimension() {
 		int[] tab= new int[2];
-		tab[0]= tileSet.get(0).getWidth() * map.length;
-		tab[1]= tileSet.get(0).getHeight() * map[0].length;
+		tab[0]= tileSet.get(0).getWidth() * map[0].length;
+		tab[1]= tileSet.get(0).getHeight() * map.length;
 		return tab;
 	}
 
@@ -63,8 +65,8 @@ public abstract class AbstractTileMap {
 	}
 
 	public Tile isSolidTileOnRoad(Rectangle board) {
-		for(int i= board.getBeginX(); i<=board.getWidth();i++) {
-			for(int j= board.getBeginY(); j<= board.getHeight();j++) {
+		for(int i= board.getBeginY(); i<=board.getHeight();i++) {
+			for(int j= board.getBeginX(); j<= board.getWidth();j++) {
 				if(!map[i][j].isTraversable()) {
 					return map[i][j];
 				}
@@ -82,6 +84,10 @@ public abstract class AbstractTileMap {
 			}
 		}
 		return null;
+	}
+	
+	public Tile findTile(int row, int col) {
+		return map[row][col];
 	}
 
 	

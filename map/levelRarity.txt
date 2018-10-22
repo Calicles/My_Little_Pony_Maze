@@ -1,6 +1,6 @@
 tileSet 10
 0 images/levelRarity/ice2.png
-1 images/levelApple/tapis.png
+-1 images/levelApple/tapis.png
 6 images/levelRarity/icewall1.png
 7 images/levelRarity/icewall2.png
 8 images/levelRarity/icewall3.png
@@ -10,8 +10,8 @@ tileSet 10
 12 images/levelRarity/icewall7.png
 13 images/levelRarity/icewall8.png
 taille 20 20
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 07 01 00
-00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 08 09 00 00
+00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 06 07 00 00
+00 00 00 -1 00 00 00 00 00 00 00 00 00 00 00 00 08 09 00 00
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 10 11 00 00
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 12 13 00 00
 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00

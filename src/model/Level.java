@@ -12,13 +12,10 @@ import type.AbstractLevel;
 
 public class Level extends AbstractLevel {
 	
-	protected BufferedImage endImage;
-	protected String endUrl;
 	protected boolean selected;
 
-	public Level(String fileMapUrl, String endUrl) throws IOException {
-		super(fileMapUrl);
-		this.endUrl= endUrl;
+	public Level(String fileMapUrl, String endImageUrl) throws IOException {
+		super(fileMapUrl, endImageUrl);
 	}
 	
 	public boolean isSelected() {return selected;}
@@ -28,7 +25,7 @@ public class Level extends AbstractLevel {
 	@Override
 	public void drawLevel(Graphics g) throws IOException {
 		if(!running) {
-			endImage= ImageIO.read(new File(endUrl));
+			endImage= ImageIO.read(new File(endImageUrl));
 			g.drawImage(endImage, 0, 0, null);
 		}else
 			super.drawLevel(g);

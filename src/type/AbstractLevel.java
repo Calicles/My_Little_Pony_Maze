@@ -22,17 +22,19 @@ public abstract class AbstractLevel {
 	protected Player player;
 	protected Rectangle mapSize;
 	protected Rectangle exit;
+	protected BufferedImage endImage;
 	
+	protected String endImageUrl;
 	protected boolean running;
 	protected int tile_width, tile_height;
 	
-	public AbstractLevel(String fileMapUrl) throws IOException {
+	public AbstractLevel(String fileMapUrl, String endImageUrl) throws IOException {
 		initMap(fileMapUrl);
-		setScreenSize();
+		setMapSize();
 		tile_width= map.getTile_width();
 		tile_height= map.getTile_height();
 		exit= tileToRectangle(map.findExit());
-		System.out.println(exit.getBeginX() +" end: "+ exit.getWidth() +" "+exit.getBeginY()+ " :" +exit.getHeight());
+		this.endImageUrl= endImageUrl;
 		running= true;
 	}
 	public AbstractLevel(String fileMapUrl, Rectangle mapSize) throws IOException {
@@ -46,7 +48,7 @@ public abstract class AbstractLevel {
 	public Dimension getDimension() {return mapSize.getDimension();}
 	public boolean isRunning() {return running;}
 
-	public void setScreenSize() {
+	public void setMapSize() {
 		int[] tab= map.getDimension();
 		mapSize= new Rectangle(tab[0], tab[1]);
 	}
@@ -73,7 +75,6 @@ public abstract class AbstractLevel {
 	public boolean playerMovesLeft(int xVector) {
 		if(isPlayerOnExit()) {
 			running= false;
-			System.out.println("false");
 		}
 		int deltaX= 0;
 		int posX= player.getX();
@@ -95,7 +96,6 @@ public abstract class AbstractLevel {
 	public boolean playerMovesRight(int xVector) {
 		if(isPlayerOnExit()) {
 			running= false;
-			System.out.println("false");
 		}
 		int deltaX= 0;
 		int posX= player.getX() + player.getWidth();
@@ -118,7 +118,6 @@ public abstract class AbstractLevel {
 	public boolean playerMovesUp(int yVector) {
 		if(isPlayerOnExit()) {
 			running= false;
-			System.out.println("false");
 		}
 		int deltaY= 0;
 		int posY= player.getY();
@@ -140,7 +139,6 @@ public abstract class AbstractLevel {
 	public boolean playerMovesDown(int yVector) {
 		if(isPlayerOnExit()) {
 			running= false;
-			System.out.println("false");
 		}
 		int deltaY= 0;
 		int posY= player.getY() + player.getHeight();
@@ -170,7 +168,7 @@ public abstract class AbstractLevel {
 		minRow= posY / tile_height +1;
 		minCol= player.getX() / tile_width;
 		maxCol= (player.getX() + player.getWidth()) / tile_width;
-		tiles= new Rectangle(minRow, minRow, minCol, maxCol);
+		tiles= new Rectangle(minCol, maxCol, minRow, minRow);
 		solidTile= map.isSolidTileOnRoad(tiles);
 		if(solidTile == null)
 			return yVector;
@@ -186,7 +184,7 @@ public abstract class AbstractLevel {
 		minRow= posY / tile_height - 1;
 		minCol= player.getX() / tile_width;
 		maxCol= (player.getX() + player.getWidth()) / tile_width;
-		tiles= new Rectangle(minRow, minRow, minCol, maxCol);
+		tiles= new Rectangle(minCol, maxCol, minRow, minRow);
 		solidTile= map.isSolidTileOnRoad(tiles);
 		if(solidTile == null)
 			return yVector;
@@ -202,7 +200,7 @@ public abstract class AbstractLevel {
 		minRow= player.getY() / tile_height;
 		maxRow= (player.getY() + player.getHeight()) / tile_height;
 		minCol= (player.getX() + player.getWidth()) / tile_width + 1;
-		tiles= new Rectangle(minRow, maxRow, minCol, minCol);
+		tiles= new Rectangle(minCol, minCol, minRow, maxRow);
 		solidTile= map.isSolidTileOnRoad(tiles);
 		if(solidTile == null)
 			return xVector;
@@ -217,7 +215,7 @@ public abstract class AbstractLevel {
 		minRow= player.getY() / tile_height;
 		maxRow= (player.getY() + player.getHeight()) / tile_height;
 		minCol= player.getX() / tile_width - 1;
-		tiles= new Rectangle(minRow, maxRow, minCol, minCol);
+		tiles= new Rectangle(minCol, minCol, minRow, maxRow);
 		solidTile= map.isSolidTileOnRoad(tiles);
 		if(solidTile == null)
 			return xVector;

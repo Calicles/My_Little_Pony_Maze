@@ -24,9 +24,12 @@ public class ButtonPanel extends JPanel implements LevelListener{
 
 	@Override
 	public void update() {
-		appleButton.setEnabled(model.isAppleSelectedAndRunning());
-		rarityButton.setEnabled(model.isRaritySelectedAndRunning());
-		rainbowButton.setEnabled(model.isRainbowSelectedAndRunning());
+		if(!model.isLevelsNull()) {
+			appleButton.setEnabled(model.isAppleSelectedAndRunning());
+			rarityButton.setEnabled(model.isRaritySelectedAndRunning());
+			rainbowButton.setEnabled(model.isRainbowSelectedAndRunning());
+		}else
+			model.removeListener(this);
 	}
 	
 	private void init() {

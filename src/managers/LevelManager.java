@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Level;
+import model.Level2;
+import type.AbstractLevel;
 import type.LevelListener;
 
 public class LevelManager {
@@ -13,7 +15,8 @@ public class LevelManager {
 	private Level levelApple;
 	private Level levelRarity;
 	private Level levelRainbow;
-	private Level levelRunning;
+	private Level2 levelFlutter;
+	private AbstractLevel levelRunning;
 	private ArrayList<LevelListener> listeners;
 	
 	public LevelManager() throws IOException {
@@ -23,6 +26,12 @@ public class LevelManager {
 		levelRainbow= new Level("map/level.txt", "images/fin/apple.png");
 		levelRunning= levelApple;
 		levelApple.selected();
+		levelFlutter= null;
+	}
+	
+	public void switchLevel2() throws IOException {
+		levelRunning= levelFlutter= new Level2("map/levelFlutter.txt", "images/fin/apple.png");
+		levelApple=null; levelRarity= null; levelRainbow= null;
 	}
 	
 	public void switchLeveApple() {
@@ -55,22 +64,39 @@ public class LevelManager {
 	public boolean isRainbowSelectedAndRunning() {
 		return !levelRainbow.isSelected() && levelRainbow.isRunning();
 	}
+	
+	public void playerMoves(int xVector, int yVector) throws IOException {
+		if(levelFlutter== null &&!levelApple.isRunning()
+				&& !levelRarity.isRunning() 
+				&& !levelRainbow.isRunning()) {
+			switchLevel2();
+		}else if(levelApple== null && levelFlutter== null) {
+			
+		}else {
+			if(xVector == 0) {
+				if(yVector < 0)
+					this.playerMovesUp(yVector);
+				else this.playerMovesDown(yVector);
+			}else {
+				if(xVector < 0)
+					this.playerMovesLeft(xVector);
+				else this.playerMovesRight(xVector);
+			}
+		}	
+		this.fireUpdate();
+	}
 
 	public void playerMovesLeft(int xVector) {
-		if(levelRunning.playerMovesLeft(xVector))
-			this.fireUpdate();
+		levelRunning.playerMovesLeft(xVector);
 	}
 	public void playerMovesRight(int xVector) {
-		if(levelRunning.playerMovesRight(xVector))//to change
-			this.fireUpdate();
+		levelRunning.playerMovesRight(xVector);
 	}
 	public void playerMovesUp(int yVector) {
-		if(levelRunning.playerMovesUp(yVector))//to change
-			this.fireUpdate();
+		levelRunning.playerMovesUp(yVector);
 	}
 	public void playerMovesDown(int yVector) {
-		if(levelRunning.playerMovesDown(yVector))//to change
-			this.fireUpdate();
+		levelRunning.playerMovesDown(yVector);
 	}
 	public void playerStopLeft() {
 		levelRunning.playerStopLeft();
@@ -110,6 +136,10 @@ public class LevelManager {
 	private void fireUpdate() {
 		for(LevelListener l:listeners)
 			l.update();
+	}
+
+	public boolean isLevelsNull() {
+		return levelApple == null;
 	}
 	
 }

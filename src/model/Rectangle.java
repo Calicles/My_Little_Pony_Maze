@@ -26,6 +26,11 @@ public class Rectangle {
 	public int getBeginY() {return beginY;}
 	public Dimension getDimension() {return new Dimension(width, height);}
 	
+	public void translate(int x, int y) {
+		beginX += x; width += x;
+		beginY += y; height += y;
+	}
+	
 	public boolean isOnLeft(int toTest) {return toTest < beginX;}
 	public boolean isOnRight(int toTest) {return toTest > width;}
 	public boolean isOnTop(int toTest) {return toTest < beginY;}
