@@ -82,6 +82,7 @@ public class Level3 extends AbstractLevel {
 	
 	 @Override
 	 public boolean playerMovesUp(int yVector) {
+		 System.out.println("in");
 		 if(!isOnTop(-4) && boxes.isPlayerOnBottomScroll(player.getY()+yVector))
 			 boxes.scroll(0, yVector);
 		 return super.playerMovesUp(yVector);
