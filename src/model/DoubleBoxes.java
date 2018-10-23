@@ -14,6 +14,7 @@ public class DoubleBoxes {
 	public int getScreenWidth() {return screen.getWidth();}
 	public int getScreenBeginY() {return screen.getBeginY();}
 	public int getScreenHeight() {return screen.getHeight();}
+	public Rectangle getScrollBox() {return scrollBox;}// to remove
 	
 	public boolean isPlayerOnTopScroll(int yPosition) {
 		return yPosition <= scrollBox.getBeginY();

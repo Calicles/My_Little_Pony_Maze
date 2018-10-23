@@ -32,6 +32,7 @@ public class Level3 extends AbstractLevel {
 		if(running) {
 			drawScreen(g);
 			drawPlayer(g);
+			drawScrollBox(g);//to remove
 		} else
 			try {
 				g.drawImage(ImageIO.read(new File(endImageUrl)), 0, 0, null);
@@ -39,6 +40,16 @@ public class Level3 extends AbstractLevel {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+	}
+
+	private void drawScrollBox(Graphics g) {//to remove
+		int coef, y;
+		Rectangle box= boxes.getScrollBox();
+		coef= box.getBeginY() / (tile_height * 20);
+		y= box.getBeginY() - (boxes.getScreenBeginY());
+		
+		g.drawRect(box.getBeginX(), y, 
+				tile_width * 10, tile_height * 10);
 	}
 
 	private void drawScreen(Graphics g) {
@@ -50,7 +61,7 @@ public class Level3 extends AbstractLevel {
 		int rowMax= boxes.getScreenHeight() / tile_height;
 		int colMax= boxes.getScreenWidth() / tile_width;
 		int x= 0, y= 0;
-		
+		if(boxes.getScreenHeight() % 32 != 0) rowMax ++;
 		for(int i= row; i<rowMax; i++) {
 			for(int j= col; j<colMax; j++) {
 				tile= map[i][j];
@@ -58,9 +69,9 @@ public class Level3 extends AbstractLevel {
 				x= tile.getX() - boxes.getScreenBeginX();
 				g.drawImage(set.get(tile.getTile_num()), x, 
 						y, null);
+				if(y < 0) System.out.println(y);
 			}
 		}
-		
 	}
 
 	protected void drawPlayer(Graphics g) {
@@ -70,22 +81,37 @@ public class Level3 extends AbstractLevel {
 	}
 	
 	protected int playerScreenPositionY() {
-		int coef=0;
-		coef= player.getY() / (tile_height * 20);
-		return player.getY() - (coef * (tile_height * 20));
+		int posY= player.getY() - (boxes.getScreenBeginY());
+		return posY;
 	}
 	protected int playerScreenPositionX() {
-		int coef=0;
-		coef= player.getX() / (tile_width * 20);
+		int coef= player.getX() / (tile_width * 20);
 		return player.getX() - (coef * (tile_width * 20));
 	}
 	
 	 @Override
 	 public boolean playerMovesUp(int yVector) {
-		 System.out.println("in");
-		 if(!isOnTop(-4) && boxes.isPlayerOnTopScroll(player.getY()+yVector))
-			 boxes.scroll(0, yVector);
+		 if(!screenOnTop() && 
+				 boxes.isPlayerOnTopScroll(player.getY()+yVector))
+			 boxes.scroll(0, yVector );
 		 return super.playerMovesUp(yVector);
 	 }
+	 
+	 @Override
+	 public boolean playerMovesDown(int yVector) {
+		 if(!screenOnBottom() &&
+				 boxes.isPlayerOnBottomScroll(player.getY()+
+						 player.getHeight() + yVector))
+			 boxes.scroll(0, yVector);
+		 return super.playerMovesDown(yVector);
+	 }
+
+	private boolean screenOnBottom() {
+		return boxes.getScreenHeight() >= mapSize.getHeight();
+	}
+
+	private boolean screenOnTop() {
+		return boxes.getScreenBeginY() <= 0;
+	}
 
 }
