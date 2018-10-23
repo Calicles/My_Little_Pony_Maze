@@ -33,7 +33,7 @@ public class LevelManager {
 	}
 	
 	private void switchLevel3() throws IOException {
-		levelRunning= levelPinky= new Level3("map/levelFlutter.txt", "images/fin/apple.png");
+		levelRunning= levelPinky= new Level3("map/levelPinky.txt", "images/fin/apple.png");
 		levelFlutter= null;
 	}
 	
@@ -74,11 +74,13 @@ public class LevelManager {
 	}
 	
 	public void playerMoves(int xVector, int yVector) throws IOException {
-		if(levelFlutter== null &&!levelApple.isRunning()
+		if(levelPinky== null && levelFlutter== null &&
+				!levelApple.isRunning()
 				&& !levelRarity.isRunning() 
 				&& !levelRainbow.isRunning()) {
 			switchLevel2();
-		}else if(levelApple== null && levelFlutter != null) {
+		}else if(levelApple== null && levelFlutter!= null &&
+				!levelFlutter.isRunning()) {
 			System.out.println("in");
 			switchLevel3();
 		}else {
