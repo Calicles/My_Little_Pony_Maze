@@ -12,7 +12,7 @@ import type.AbstractLevel;
 
 public class Level2 extends AbstractLevel {
 	
-	private Rectangle screen;
+	protected Rectangle screen;
 
 	public Level2(String fileMapUrl, String endImageUrl) throws IOException {
 		super(fileMapUrl, endImageUrl);
@@ -34,18 +34,18 @@ public class Level2 extends AbstractLevel {
 			}
 	}
 
-	private void drawPlayer(Graphics g) {
+	protected void drawPlayer(Graphics g) {
 		int screenPosY= playerScreenPositionY();
 		g.drawImage(player.getImage(), player.getX(), screenPosY, null);
 	}
 	
-	private int playerScreenPositionY() {
+	protected int playerScreenPositionY() {
 		int coef=0;
 		coef= player.getY() / (tile_height * 20);
 		return player.getY() - (coef * (tile_height * 20));
 	}
 
-	private void drawScreen(Graphics g) {
+	protected void drawScreen(Graphics g) {
 		Tile tile= null;
 		Tile[][] map= this.map.getMap();
 		HashMap<Integer, BufferedImage> set= this.map.getTileSet();
@@ -79,16 +79,16 @@ public class Level2 extends AbstractLevel {
 		return super.playerMovesDown(yVector);
 	}
 	
-	private boolean isOnBottomScreen() {
+	protected boolean isOnBottomScreen() {
 		return (playerScreenPositionY() + player.getHeight()) > 
 			(20 * tile_height - 4);
 	}
 
-	public boolean isOnTopScreen() {
+	protected boolean isOnTopScreen() {
 		return playerScreenPositionY() <= 4;
 	}
 	
-	public void loadMap(int xVector, int yVector, int playerVector) {
+	protected void loadMap(int xVector, int yVector, int playerVector) {
 		screen.translate(xVector, yVector);
 		player.translateY(playerVector);
 	}

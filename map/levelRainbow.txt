@@ -39,15 +39,15 @@ taille 20 20
 07 07 07 07 07 07 07 07 07 07 07 07 07 07 07 07 07 07 07 07
 player 40 50
 4 3
-images/pony/apple/face1.png
-images/pony/apple/face2.png
-images/pony/apple/face3.png
-images/pony/apple/gauche1.png
-images/pony/apple/gauche2.png
-images/pony/apple/gauche3.png
-images/pony/apple/droite1.png
-images/pony/apple/droite2.png
-images/pony/apple/droite3.png
-images/pony/apple/dos1.png
-images/pony/apple/dos2.png
-images/pony/apple/dos3.png
+images/pony/rainbow/face1.png
+images/pony/rainbow/face2.png
+images/pony/rainbow/face3.png
+images/pony/rainbow/gauche1.png
+images/pony/rainbow/gauche2.png
+images/pony/rainbow/gauche3.png
+images/pony/rainbow/droite1.png
+images/pony/rainbow/droite2.png
+images/pony/rainbow/droite3.png
+images/pony/rainbow/dos1.png
+images/pony/rainbow/dos2.png
+images/pony/rainbow/dos3.png

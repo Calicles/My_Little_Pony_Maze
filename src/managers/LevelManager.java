@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import model.Level;
 import model.Level2;
+import model.Level3;
 import type.AbstractLevel;
 import type.LevelListener;
 
@@ -16,6 +17,7 @@ public class LevelManager {
 	private Level levelRarity;
 	private Level levelRainbow;
 	private Level2 levelFlutter;
+	private Level3 levelPinky;
 	private AbstractLevel levelRunning;
 	private ArrayList<LevelListener> listeners;
 	
@@ -23,13 +25,18 @@ public class LevelManager {
 		listeners= new ArrayList<>();
 		levelApple= new Level("map/level.txt", "images/fin/apple.png");
 		levelRarity= new Level("map/levelRarity.txt", "images/fin/apple.png");
-		levelRainbow= new Level("map/level.txt", "images/fin/apple.png");
+		levelRainbow= new Level("map/levelRainbow.txt", "images/fin/apple.png");
 		levelRunning= levelApple;
 		levelApple.selected();
 		levelFlutter= null;
 	}
 	
-	public void switchLevel2() throws IOException {
+	private void switchLevel3() throws IOException {
+		levelRunning= levelPinky= new Level3("map/levelFlutter.txt", "images/fin/apple.png");
+		levelFlutter= null;
+	}
+	
+	private void switchLevel2() throws IOException {
 		levelRunning= levelFlutter= new Level2("map/levelFlutter.txt", "images/fin/apple.png");
 		levelApple=null; levelRarity= null; levelRainbow= null;
 	}
@@ -71,7 +78,7 @@ public class LevelManager {
 				&& !levelRainbow.isRunning()) {
 			switchLevel2();
 		}else if(levelApple== null && levelFlutter== null) {
-			
+			switchLevel3();
 		}else {
 			if(xVector == 0) {
 				if(yVector < 0)
