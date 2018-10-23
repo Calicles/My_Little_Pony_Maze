@@ -29,6 +29,7 @@ public class LevelManager {
 		levelRunning= levelApple;
 		levelApple.selected();
 		levelFlutter= null;
+		levelPinky= null;
 	}
 	
 	private void switchLevel3() throws IOException {
@@ -77,7 +78,8 @@ public class LevelManager {
 				&& !levelRarity.isRunning() 
 				&& !levelRainbow.isRunning()) {
 			switchLevel2();
-		}else if(levelApple== null && levelFlutter== null) {
+		}else if(levelApple== null && levelFlutter != null) {
+			System.out.println("in");
 			switchLevel3();
 		}else {
 			if(xVector == 0) {
