@@ -32,6 +32,9 @@ public class LevelManager {
 		levelPinky= null;
 	}
 	
+	public int getMapWidth() {return levelRunning.getMapWidth();}
+	public int getMapHeight() {return levelRunning.getMapHeight();}
+	
 	private void switchLevel3() throws IOException {
 		levelRunning= levelPinky= new Level3("map/levelPinky.txt", "images/fin/apple.png");
 		levelFlutter= null;
@@ -151,6 +154,42 @@ public class LevelManager {
 
 	public boolean isLevelsNull() {
 		return levelApple == null;
+	}
+
+	public boolean isLevelFlutterNull() {
+		return levelFlutter == null;
+	}
+
+	public boolean isLevelPinkyNull() {
+		return levelPinky == null;
+	}
+
+	public void drawMiniMap(Graphics g, int ECHELLE) {
+		levelPinky.drawMiniMap(g, ECHELLE);
+	}
+
+	public int getScreenX() {
+		return levelPinky.getScreenX();
+	}
+
+	public int getScreenY() {
+		return levelPinky.getScreenY();
+	}
+
+	public int getScreenWidth() {
+		return levelPinky.getScreenWidth();
+	}
+
+	public int getScreenHeight() {
+		return levelPinky.getScreenHeight();
+	}
+
+	public int getPlayerX() {
+		return levelPinky.getPlayerX();
+	}
+
+	public int getPlayerY() {
+		return levelPinky.getPlayerY();
 	}
 	
 }

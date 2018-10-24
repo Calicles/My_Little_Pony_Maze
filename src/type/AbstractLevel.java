@@ -44,6 +44,9 @@ public abstract class AbstractLevel {
 		running= true;
 	}
 	
+	public abstract int getMapWidth();
+	public abstract int getMapHeight();
+	
 	public Dimension getDimension() {return mapSize.getDimension();}
 	public boolean isRunning() {return running;}
 

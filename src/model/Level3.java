@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -19,6 +20,12 @@ public class Level3 extends AbstractLevel {
 		initBoxes();
 	}
 	
+	@Override
+	public int getMapWidth() {return mapSize.getWidth();}
+
+	@Override
+	public int getMapHeight() {return mapSize.getHeight();}
+	
 	protected void initBoxes() {
 		Rectangle screen= new Rectangle(0, 20*tile_width, 20*tile_height,
 				40* tile_height);
@@ -32,7 +39,7 @@ public class Level3 extends AbstractLevel {
 		if(running) {
 			drawScreen(g);
 			drawPlayer(g);
-			drawScrollBox(g);//to remove
+			//drawScrollBox(g);//to remove
 		} else
 			try {
 				g.drawImage(ImageIO.read(new File(endImageUrl)), 0, 0, null);
@@ -46,7 +53,7 @@ public class Level3 extends AbstractLevel {
 		int coef, y;
 		Rectangle box= boxes.getScrollBox();
 		coef= box.getBeginY() / (tile_height * 20);
-		y= box.getBeginY() - (boxes.getScreenBeginY());
+		y= box.getBeginY() - boxes.getScreenBeginY();
 		
 		g.drawRect(box.getBeginX(), y, 
 				tile_width * 10, tile_height * 10);
@@ -80,11 +87,31 @@ public class Level3 extends AbstractLevel {
 		g.drawImage(player.getImage(), screenPosX, screenPosY, null);
 	}
 	
+	public void drawMiniMap(Graphics g, int ECHELLE) {
+		Color old= g.getColor();
+		Tile[][] map= this.map.getMap();
+		int num= 0, x, y;
+		int width= tile_width / ECHELLE;
+		int height= tile_height / ECHELLE;
+		g.setColor(Color.ORANGE);
+		for(int i=0; i<map.length; i++) {
+			for(int j=0;j<map[0].length;j++) {
+				num= map[i][j].getTile_num();
+				x= map[i][j].getX() / ECHELLE;
+				y= map[i][j].getY() / ECHELLE;
+				if(num > Tile.SOLID) {
+					g.fillRect(x, y, width, height);
+				}
+			}
+		}
+		g.setColor(old);
+	}
+	
 	protected int playerScreenPositionY() {
-		int posY= player.getY() - (boxes.getScreenBeginY());
+		int posY= player.getY() - boxes.getScreenBeginY();
 		return posY;
 	}
-	protected int playerScreenPositionX() {
+	protected int playerScreenPositionX() {//to change
 		int coef= player.getX() / (tile_width * 20);
 		return player.getX() - (coef * (tile_width * 20));
 	}
@@ -112,6 +139,30 @@ public class Level3 extends AbstractLevel {
 
 	private boolean screenOnTop() {
 		return boxes.getScreenBeginY() <= 0;
+	}
+
+	public int getScreenX() {
+		return boxes.getScreenBeginX();
+	}
+
+	public int getScreenY() {
+		return boxes.getScreenBeginY();
+	}
+
+	public int getScreenWidth() {
+		return boxes.getScreenWidth();
+	}
+
+	public int getScreenHeight() {
+		return boxes.getScreenHeight();
+	}
+
+	public int getPlayerX() {
+		return player.getX();
+	}
+
+	public int getPlayerY() {
+		return player.getY();
 	}
 
 }

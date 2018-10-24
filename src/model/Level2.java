@@ -93,4 +93,16 @@ public class Level2 extends AbstractLevel {
 		player.translateY(playerVector);
 	}
 
+	@Override
+	public int getMapWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getMapHeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
