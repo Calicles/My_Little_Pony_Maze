@@ -51,8 +51,8 @@ public class Level2 extends AbstractLevel {
 		HashMap<Integer, BufferedImage> set= this.map.getTileSet();
 		int row= screen.getBeginY();
 		int col= screen.getBeginX();
-		int rowMax= screen.getHeight();
-		int colMax= screen.getWidth();
+		int rowMax= screen.getEndY();
+		int colMax= screen.getEndX();
 		int x= 0, y= 0;
 		
 		for(int i= row; i<rowMax; i++) {

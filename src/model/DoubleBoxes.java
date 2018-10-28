@@ -11,22 +11,24 @@ public class DoubleBoxes {
 	}
 	
 	public int getScreenBeginX() {return screen.getBeginX();}
-	public int getScreenWidth() {return screen.getWidth();}
+	public int getScreenEndX() {return screen.getEndX();}
 	public int getScreenBeginY() {return screen.getBeginY();}
-	public int getScreenHeight() {return screen.getHeight();}
+	public int getScreenEndY() {return screen.getEndY();}
+	public int getScreenWidth(){return screen.getWidth();}
+	public int getScreenHeight(){return screen.getHeight();}
 	public Rectangle getScrollBox() {return scrollBox;}// to remove
 	
 	public boolean isPlayerOnTopScroll(int yPosition) {
 		return yPosition <= scrollBox.getBeginY();
 	}
 	public boolean isPlayerOnBottomScroll(int yPosition) {
-		return yPosition >= scrollBox.getHeight();
+		return yPosition >= scrollBox.getEndY();
 	}
 	public boolean isPlayerOnLeftScroll(int xPosition) {
 		return xPosition <= scrollBox.getBeginX();
 	}
 	public boolean isPlayerOnRightScroll(int xPosition) {
-		return xPosition >= scrollBox.getWidth();
+		return xPosition >= scrollBox.getEndX();
 	}
 	
 	public void scroll(int xVector, int yVector) {

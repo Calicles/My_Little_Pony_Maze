@@ -65,8 +65,8 @@ public abstract class AbstractTileMap {
 	}
 
 	public Tile isSolidTileOnRoad(Rectangle board) {
-		for(int i= board.getBeginY(); i<=board.getHeight();i++) {
-			for(int j= board.getBeginX(); j<= board.getWidth();j++) {
+		for(int i= board.getBeginY(); i<=board.getEndY();i++) {
+			for(int j= board.getBeginX(); j<= board.getEndX();j++) {
 				if(!map[i][j].isTraversable()) {
 					return map[i][j];
 				}

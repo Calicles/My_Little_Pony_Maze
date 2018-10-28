@@ -65,10 +65,10 @@ public class Level3 extends AbstractLevel {
 		HashMap<Integer, BufferedImage> set= this.map.getTileSet();
 		int row= boxes.getScreenBeginY() / tile_height;
 		int col= boxes.getScreenBeginX() / tile_width;
-		int rowMax= boxes.getScreenHeight() / tile_height;
-		int colMax= boxes.getScreenWidth() / tile_width;
+		int rowMax= boxes.getScreenEndY() / tile_height;
+		int colMax= boxes.getScreenEndX() / tile_width;
 		int x= 0, y= 0;
-		if(boxes.getScreenHeight() % 32 != 0) rowMax ++;
+		if(boxes.getScreenEndY() % 32 != 0) rowMax ++;
 		for(int i= row; i<rowMax; i++) {
 			for(int j= col; j<colMax; j++) {
 				tile= map[i][j];
@@ -112,8 +112,8 @@ public class Level3 extends AbstractLevel {
 		return posY;
 	}
 	protected int playerScreenPositionX() {//to change
-		int coef= player.getX() / (tile_width * 20);
-		return player.getX() - (coef * (tile_width * 20));
+		int posX= player.getX() - boxes.getScreenBeginX();
+		return posX;
 	}
 	
 	 @Override
@@ -132,9 +132,33 @@ public class Level3 extends AbstractLevel {
 			 boxes.scroll(0, yVector);
 		 return super.playerMovesDown(yVector);
 	 }
+	 
+	 @Override
+	 public boolean playerMovesLeft(int xVector) {
+		 if(!screenOnLeft() && 
+				 boxes.isPlayerOnLeftScroll(player.getX() + xVector))
+			 boxes.scroll(xVector, 0);
+		 return super.playerMovesLeft(xVector);
+	 }
+	 
+	 @Override
+	 public boolean playerMovesRight(int xVector) {
+		 if(!screenOnRight() &&
+				 boxes.isPlayerOnRightScroll(player.getX() + player.getWidth() + xVector))
+			 boxes.scroll(xVector, 0);
+		 return super.playerMovesRight(xVector);
+	 }
+	 
+	 private boolean screenOnRight() {
+		 return boxes.getScreenEndX() >= mapSize.getEndX();
+	 }
+	 
+	 private boolean screenOnLeft() {
+		 return boxes.getScreenBeginX() <= 0;
+	 }
 
 	private boolean screenOnBottom() {
-		return boxes.getScreenHeight() >= mapSize.getHeight();
+		return boxes.getScreenEndY() >= mapSize.getEndY();
 	}
 
 	private boolean screenOnTop() {
