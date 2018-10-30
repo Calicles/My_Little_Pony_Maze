@@ -89,17 +89,20 @@ public class LevelManager {
 			switchLevel2();
 		}else if(levelApple== null && levelFlutter!= null &&
 				!levelFlutter.isRunning()) {
-			System.out.println("in");
 			switchLevel3();
 		}else {
 			if(xVector == 0) {
-				if(yVector < 0)
+				if(yVector < 0) {
 					this.playerMovesUp(yVector);
-				else this.playerMovesDown(yVector);
+				}else {
+					this.playerMovesDown(yVector);
+				}
 			}else {
-				if(xVector < 0)
+				if(xVector < 0) {
 					this.playerMovesLeft(xVector);
-				else this.playerMovesRight(xVector);
+				}else {
+					this.playerMovesRight(xVector);
+				}
 			}
 		}	
 		this.fireUpdate();

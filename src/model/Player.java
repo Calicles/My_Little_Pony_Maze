@@ -26,10 +26,10 @@ public class Player extends AbstractEntity {
 	private void setX(int x){this.x= x;}
 	private void setY(int y){this.y= y;}
 	
-	public void animeLeft() {image= left[2]; this.resetIndex();}
-	public void animeRight() {image= right[0];}
-	public void animeUp() {image= back[0];}
-	public void animeDown() {image= face[0];}
+	public void animeLeft() {image= left[2]; index= 2;}
+	public void animeRight() {image= right[2]; index= 2;}
+	public void animeUp() {image= back[2]; index= 2;}
+	public void animeDown() {image= face[0]; index= 2;}
 	
 	public void translateX(int xVector)
 	{
@@ -39,7 +39,7 @@ public class Player extends AbstractEntity {
 			image= right[index];
 		}
 		tempo++;
-		if(tempo %5 == 0){
+		if(tempo %4 == 0){
 			index++;
 			if(tempo == 100)
 				tempo= 0;
@@ -67,23 +67,23 @@ public class Player extends AbstractEntity {
 	}
 	
 	private void resetIndex() {
-		index= 1;
+		index= 0;
 	}
 	public void stopLeft() {
 		resetIndex();
-		image= left[index];
+		image= left[1];
 	}
 	public void stopRight() {
 		resetIndex();
-		image= right[index];
+		image= right[1];
 	}
 	public void stopUp() {
 		resetIndex();
-		image= back[index];
+		image= back[1];
 	}
 	public void stopDown() {
 		resetIndex();
-		image= face[index];
+		image= face[1];
 	}
 	
 	private BufferedImage[] toBufferedImages(String[] tab) throws IOException {

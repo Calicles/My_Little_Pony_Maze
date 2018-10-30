@@ -35,9 +35,9 @@ public class Frame extends JFrame {
 			try {
 				if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 					panel.playerMoves(4, 0);
-				else if(e.getKeyCode() == KeyEvent.VK_LEFT)
+				else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
 					panel.playerMoves(-4, 0);	
-				else if(e.getKeyCode() == KeyEvent.VK_UP)
+				}else if(e.getKeyCode() == KeyEvent.VK_UP)
 					panel.playerMoves(0, -4);
 				else if(e.getKeyCode() == KeyEvent.VK_DOWN)
 					panel.playerMoves(0, 4);
