@@ -57,8 +57,15 @@ public class Frame extends JFrame {
 		}
 
 		@Override
-		public void keyTyped(KeyEvent arg0) {
-			// TODO Auto-generated method stub
+		public void keyTyped(KeyEvent e) {
+			if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+				panel.playerAnimeRight();
+			else if(e.getKeyCode() == KeyEvent.VK_LEFT)
+				panel.playerAnimeLeft();	
+			else if(e.getKeyCode() == KeyEvent.VK_UP)
+				panel.playerAnimeUp();
+			else if(e.getKeyCode() == KeyEvent.VK_DOWN)
+				panel.playerAnimeDown();
 			
 		}
 		

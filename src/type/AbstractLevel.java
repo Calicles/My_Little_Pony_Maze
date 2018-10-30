@@ -47,6 +47,11 @@ public abstract class AbstractLevel {
 	public abstract int getMapWidth();
 	public abstract int getMapHeight();
 	
+	public void playerAnimeLeft() {player.animeLeft();}
+	public void playerAnimeRight() {player.animeRight();}
+	public void playerAnimeUp() {player.animeUp();}
+	public void playerAnimeDown() {player.animeDown();}
+	
 	public Dimension getDimension() {return mapSize.getDimension();}
 	public boolean isRunning() {return running;}
 
@@ -335,7 +340,7 @@ public abstract class AbstractLevel {
 		return nbr;
 	}
 	private static void fileFormatError(String msg) {
-		throw new FileException("était attendu: "+msg);
+		throw new FileException("ï¿½tait attendu: "+msg);
 	}
 	
 }

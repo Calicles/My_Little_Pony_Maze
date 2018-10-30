@@ -23,14 +23,14 @@ public class Player extends AbstractEntity {
 		index= 0; tempo=0;
 	}
 	
-	private void setX(int x)
-	{
-		this.x= x;
-	}
-	private void setY(int y)
-	{
-		this.y= y;
-	}
+	private void setX(int x){this.x= x;}
+	private void setY(int y){this.y= y;}
+	
+	public void animeLeft() {image= left[2]; this.resetIndex();}
+	public void animeRight() {image= right[0];}
+	public void animeUp() {image= back[0];}
+	public void animeDown() {image= face[0];}
+	
 	public void translateX(int xVector)
 	{
 		if(xVector < 0) {
@@ -39,7 +39,7 @@ public class Player extends AbstractEntity {
 			image= right[index];
 		}
 		tempo++;
-		if(tempo %4 == 0){
+		if(tempo %5 == 0){
 			index++;
 			if(tempo == 100)
 				tempo= 0;

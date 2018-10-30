@@ -35,6 +35,11 @@ public class LevelManager {
 	public int getMapWidth() {return levelRunning.getMapWidth();}
 	public int getMapHeight() {return levelRunning.getMapHeight();}
 	
+	public void playerAnimeLeft() {levelRunning.playerAnimeLeft(); this.fireUpdate();}
+	public void playerAnimeRight() {levelRunning.playerAnimeRight(); this.fireUpdate();}
+	public void playerAnimeUp() {levelRunning.playerAnimeUp(); this.fireUpdate();}
+	public void playerAnimeDown() {levelRunning.playerAnimeDown(); this.fireUpdate();}
+	
 	private void switchLevel3() throws IOException {
 		levelRunning= levelPinky= new Level3("map/levelPinky.txt", "images/fin/apple.png");
 		levelFlutter= null;

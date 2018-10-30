@@ -41,6 +41,11 @@ public class SpecialPanel extends JPanel implements LevelListener{
 		this.repaint();
 	}
 	
+	public void playerAnimeLeft() {model.playerAnimeLeft();}
+	public void playerAnimeRight() {model.playerAnimeRight();}
+	public void playerAnimeUp() {model.playerAnimeUp();}
+	public void playerAnimeDown() {model.playerAnimeDown();}
+	
 	public void playerMoves(int xVector, int yVector) throws IOException {
 		model.playerMoves(xVector, yVector);
 	}
