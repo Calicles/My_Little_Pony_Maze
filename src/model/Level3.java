@@ -111,7 +111,7 @@ public class Level3 extends AbstractLevel {
 		int posY= player.getY() - boxes.getScreenBeginY();
 		return posY;
 	}
-	protected int playerScreenPositionX() {//to change
+	protected int playerScreenPositionX() {
 		int posX= player.getX() - boxes.getScreenBeginX();
 		return posX;
 	}

@@ -149,7 +149,7 @@ public abstract class AbstractLevel {
 		}
 		int deltaY= 0;
 		int posY= player.getY() + player.getHeight();
-		if(posY > mapSize.getHeight() - tile_height) {
+		if(posY >= mapSize.getHeight() - tile_height) {
 			if(!isOnBottom(yVector)) {
 				deltaY= mapSize.getHeight() - posY;
 				if(yVector > deltaY) 
