@@ -23,7 +23,9 @@ public class Frame extends JFrame {
 		this.addKeyListener(new InternImageListener());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.pack();
+		this.setTitle("My Little Pony");
 		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		this.setVisible(true);
 	}
 	
